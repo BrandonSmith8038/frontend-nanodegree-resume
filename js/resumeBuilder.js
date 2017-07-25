@@ -72,3 +72,18 @@ var education = {
 		}
 	]
 }
+if (bio.name.length > 0){
+	var HTMLheaderName = HTMLheaderName.replace("%data%",bio.name);
+	$("#header").append(HTMLheaderName);
+}
+
+if (bio.skills.length > 0) {
+	console.log("There are skills");
+	$("#header").append(HTMLskillsStart);
+	
+	for (var i = 0;i < bio.skills.length;i++ ){
+		formattedSkill = HTMLskills.replace("%data%",bio.skills[i]);
+		$("#skills").append(formattedSkill);
+	}
+
+};
