@@ -78,12 +78,28 @@ if (bio.name.length > 0){
 }
 
 if (bio.skills.length > 0) {
-	console.log("There are skills");
 	$("#header").append(HTMLskillsStart);
 	
 	for (skill in bio.skills ){
 		formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
 		$("#skills").append(formattedSkill);
 	}
-
 };
+
+if(work.jobs.length > 0 ) {
+	for (job in work.jobs ) {
+		$("#workExperience").append(HTMLworkStart);
+		
+		var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
+		var formattedWorkTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);
+		var formattedWorkDate = HTMLworkDates.replace("%data%",work.jobs[job].dates)
+		var formattedWorkLocation = HTMLworkLocation.replace("%data%",work.jobs[job].location)
+		var formattedWorkDescription = HTMLworkDescription.replace("%data%",work.jobs[job].description)
+		var employerTitle = formattedEmployer + " " + formattedWorkTitle;
+
+		$(".work-entry:last").append(employerTitle);
+		$(".work-entry:last").append(formattedWorkDate);
+		$(".work-entry:last").append(formattedWorkLocation);
+		$(".work-entry:last").append(formattedWorkDescription);
+	}
+}
