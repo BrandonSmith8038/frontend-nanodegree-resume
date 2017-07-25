@@ -81,8 +81,8 @@ if (bio.skills.length > 0) {
 	console.log("There are skills");
 	$("#header").append(HTMLskillsStart);
 	
-	for (var i = 0;i < bio.skills.length;i++ ){
-		formattedSkill = HTMLskills.replace("%data%",bio.skills[i]);
+	for (skill in bio.skills ){
+		formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
 		$("#skills").append(formattedSkill);
 	}
 
