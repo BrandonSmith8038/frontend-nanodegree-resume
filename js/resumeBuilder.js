@@ -1,9 +1,3 @@
-// $("#main").append(["Brandon Smith"]);
-
-// var awesomeThoughts = "I am Brandon and I am AWESOME!";
-
-// var funThoughts = awesomeThoughts.replace("AWESOME", "FUN");
-// $('#main').append(funThoughts);
 var bio = {
 	"name": "Brandon Smith",
 	"role": "Front End Developer",
@@ -33,7 +27,6 @@ var projects = {
 			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus natus aperiam dolores quidem perspiciatis aspernatur quia sed nam, neque est!"
 		}
 	],
-
 }
 
 var work = {
@@ -76,7 +69,7 @@ var education = {
 
  bio.display = function(){
 	var formattedHeaderName = HTMLheaderName.replace("%data%",bio.name);
-	var formattedHeaderRole = HTMLheaderRole.replace("%data%",bio.name); 
+	var formattedHeaderRole = HTMLheaderRole.replace("%data%",bio.role); 
 	var formattedWelcomeMessage = HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
 	var formattedBioPic = HTMLbioPic.replace("%data%","images/profilePicture.jpg");
 	var formattedMobile = HTMLmobile.replace("%data%",bio.contacts.mobile);
@@ -94,34 +87,44 @@ var education = {
 	$("#header").append(formattedLocation);
 };
 
+bio.skills.display = function() {
+	$("#header").append(HTMLskillsStart);
+	for (var i = 0;i < bio.skills.length;i++ ){
+		var formattedSkill = HTMLskills.replace("%data%",bio.skills[i]);
+		$("#skills").append(formattedSkill);
+	};
+}
 
-$("#header").append(HTMLskillsStart);
+work.display = function(){
+	for (var i = 0; i < work.jobs.length; i++ ) {
+		$("#workExperience").append(HTMLworkStart);
+		
+		var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[i].employer);
+		var formattedWorkTitle = HTMLworkTitle.replace("%data%",work.jobs[i].title);
+		var formattedWorkDate = HTMLworkDates.replace("%data%",work.jobs[i].dates)
+		var formattedWorkLocation = HTMLworkLocation.replace("%data%",work.jobs[i].location)
+		var formattedWorkDescription = HTMLworkDescription.replace("%data%",work.jobs[i].description)
+		var employerTitle = formattedEmployer + " " + formattedWorkTitle;
 
-for (skill in bio.skills ){
-	var formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
-	$("#skills").append(formattedSkill);
+		$(".work-entry:last").append(employerTitle);
+		$(".work-entry:last").append(formattedWorkDate);
+		$(".work-entry:last").append(formattedWorkLocation);
+		$(".work-entry:last").append(formattedWorkDescription);
+	}
+};	
+
+projects.display = function() {
+	$("#projects").append(HTMLprojectStart);
+	for (var i = 0;i < projects.projects.length;i++ ){
+		var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
+		var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
+		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
+		
+		$(".project-entry:last").append(formattedProjectTitle);
+		$(".project-entry:last").append(formattedProjectDates);
+		$(".project-entry:last").append(formattedProjectDescription);
+	}
 };
-
-
-
-	
-for (job in work.jobs ) {
-	$("#workExperience").append(HTMLworkStart);
-	
-	var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
-	var formattedWorkTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);
-	var formattedWorkDate = HTMLworkDates.replace("%data%",work.jobs[job].dates)
-	var formattedWorkLocation = HTMLworkLocation.replace("%data%",work.jobs[job].location)
-	var formattedWorkDescription = HTMLworkDescription.replace("%data%",work.jobs[job].description)
-	var employerTitle = formattedEmployer + " " + formattedWorkTitle;
-
-	$(".work-entry:last").append(employerTitle);
-	$(".work-entry:last").append(formattedWorkDate);
-	$(".work-entry:last").append(formattedWorkLocation);
-	$(".work-entry:last").append(formattedWorkDescription);
-};
-
-$("#main").append(internationalizeButton);
 
 function inName(name){
 	var nameArray = name.trim().split(" ");
@@ -136,7 +139,12 @@ function inName(name){
 	return firstName + " " + lastName;
 };
 
+
 bio.display();
+bio.skills.display();
+work.display();
 projects.display();
+
+$("#main").append(internationalizeButton);
 
 $("#mapDiv").append(googleMap);
