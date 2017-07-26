@@ -32,7 +32,8 @@ var projects = {
 			"dates": "2015-2017",
 			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus natus aperiam dolores quidem perspiciatis aspernatur quia sed nam, neque est!"
 		}
-	]
+	],
+
 }
 
 var work = {
@@ -72,38 +73,53 @@ var education = {
 		}
 	]
 }
-if (bio.name.length > 0){
-	var HTMLheaderName = HTMLheaderName.replace("%data%",bio.name);
-	$("#header").append(HTMLheaderName);
-}
 
-if (bio.skills.length > 0) {
-	$("#header").append(HTMLskillsStart);
-	
-	for (skill in bio.skills ){
-		formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
-		$("#skills").append(formattedSkill);
-	}
+ bio.display = function(){
+	var formattedHeaderName = HTMLheaderName.replace("%data%",bio.name);
+	var formattedHeaderRole = HTMLheaderRole.replace("%data%",bio.name); 
+	var formattedWelcomeMessage = HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
+	var formattedBioPic = HTMLbioPic.replace("%data%","images/profilePicture.jpg");
+	var formattedMobile = HTMLmobile.replace("%data%",bio.contacts.mobile);
+	var formattedEmail = HTMLemail.replace("%data%",bio.contacts.email);
+	var formattedGithub = HTMLgithub.replace("%data%",bio.contacts.github);
+	var formattedLocation = HTMLlocation.replace("%data%",bio.contacts.location);
+
+	$("#header").append(formattedHeaderName);
+	$("#header").append(formattedHeaderRole);
+	$("#header").append(formattedWelcomeMessage);
+	$("#header").append(formattedBioPic);
+	$("#header").append(formattedMobile);
+	$("#header").append(formattedEmail);
+	$("#header").append(formattedGithub);
+	$("#header").append(formattedLocation);
 };
 
 
-	if(work.jobs.length > 0 ) {
-		for (job in work.jobs ) {
-			$("#workExperience").append(HTMLworkStart);
-			
-			var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
-			var formattedWorkTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);
-			var formattedWorkDate = HTMLworkDates.replace("%data%",work.jobs[job].dates)
-			var formattedWorkLocation = HTMLworkLocation.replace("%data%",work.jobs[job].location)
-			var formattedWorkDescription = HTMLworkDescription.replace("%data%",work.jobs[job].description)
-			var employerTitle = formattedEmployer + " " + formattedWorkTitle;
+$("#header").append(HTMLskillsStart);
 
-			$(".work-entry:last").append(employerTitle);
-			$(".work-entry:last").append(formattedWorkDate);
-			$(".work-entry:last").append(formattedWorkLocation);
-			$(".work-entry:last").append(formattedWorkDescription);
-		}
-	};
+for (skill in bio.skills ){
+	var formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
+	$("#skills").append(formattedSkill);
+};
+
+
+
+	
+for (job in work.jobs ) {
+	$("#workExperience").append(HTMLworkStart);
+	
+	var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
+	var formattedWorkTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);
+	var formattedWorkDate = HTMLworkDates.replace("%data%",work.jobs[job].dates)
+	var formattedWorkLocation = HTMLworkLocation.replace("%data%",work.jobs[job].location)
+	var formattedWorkDescription = HTMLworkDescription.replace("%data%",work.jobs[job].description)
+	var employerTitle = formattedEmployer + " " + formattedWorkTitle;
+
+	$(".work-entry:last").append(employerTitle);
+	$(".work-entry:last").append(formattedWorkDate);
+	$(".work-entry:last").append(formattedWorkLocation);
+	$(".work-entry:last").append(formattedWorkDescription);
+};
 
 $("#main").append(internationalizeButton);
 
@@ -120,18 +136,7 @@ function inName(name){
 	return firstName + " " + lastName;
 };
 
-projects.display = function() {
-	$("#projects").append(HTMLprojectStart);
-	for (var i = 0;i < projects.projects.length;i++ ){
-		var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
-		var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
-		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
-		
-		$(".project-entry:last").append(formattedProjectTitle);
-		$(".project-entry:last").append(formattedProjectDates);
-		$(".project-entry:last").append(formattedProjectDescription);
-	}
-};
+bio.display();
 projects.display();
 
 $("#mapDiv").append(googleMap);
