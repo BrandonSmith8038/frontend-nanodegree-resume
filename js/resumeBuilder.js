@@ -77,14 +77,17 @@ var education = {
 	var formattedGithub = HTMLgithub.replace("%data%",bio.contacts.github);
 	var formattedLocation = HTMLlocation.replace("%data%",bio.contacts.location);
 
-	$("#header").append(formattedHeaderName);
-	$("#header").append(formattedHeaderRole);
 	$("#header").append(formattedWelcomeMessage);
-	$("#header").append(formattedBioPic);
-	$("#header").append(formattedMobile);
-	$("#header").append(formattedEmail);
-	$("#header").append(formattedGithub);
-	$("#header").append(formattedLocation);
+	$("#header").prepend(formattedBioPic);
+	$("#header").prepend(formattedHeaderRole);
+	$("#header").prepend(formattedHeaderName);
+	$("#topContacts").append(formattedMobile);
+	$("#topContacts").append(formattedEmail);
+	$("#topContacts").append(formattedGithub);
+	$("#topContacts").append(formattedLocation);
+	$("#footerContacts").append(formattedMobile);
+	$("#footerContacts").append(formattedEmail);
+	$("#footerContacts").append(formattedGithub);
 };
 
 bio.skills.display = function() {
