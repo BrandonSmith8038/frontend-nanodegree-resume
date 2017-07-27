@@ -1,6 +1,6 @@
 var bio = {
-	"name": "Brandon Smith",
-	"role": "Front End Developer",
+	"name":	"Brandon Smith",
+	"role":	"Front End Developer",
 	"welcomeMessage": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, sit.",
 	"bioPic": "images/profilePicture.jpg",
 	"contacts": {
@@ -12,7 +12,7 @@ var bio = {
 	"skills": [
 	"HTML","CSS","Javascript","Powershell"
 	]
-}
+};
 
 var projects = {
 	"projects": [
@@ -27,7 +27,7 @@ var projects = {
 			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus natus aperiam dolores quidem perspiciatis aspernatur quia sed nam, neque est!"
 		}
 	],
-}
+};
 
 var work = {
 	"jobs": [
@@ -46,7 +46,7 @@ var work = {
 		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut ad, laborum reiciendis eum delectus, voluptatem quaerat sit nemo illum pariatur."
 		}
 	]
-}
+};
 
 var education = {
 	"schools": [
@@ -65,7 +65,7 @@ var education = {
 		"url": "#"	
 		}
 	]
-}
+};
 
  bio.display = function(){
 	var formattedHeaderName = HTMLheaderName.replace("%data%",bio.name);
@@ -95,8 +95,8 @@ bio.skills.display = function() {
 	for (var i = 0;i < bio.skills.length;i++ ){
 		var formattedSkill = HTMLskills.replace("%data%",bio.skills[i]);
 		$("#skills").append(formattedSkill);
-	};
-}
+	}
+};
 
 work.display = function(){
 	for (var i = 0; i < work.jobs.length; i++ ) {
@@ -104,9 +104,9 @@ work.display = function(){
 		
 		var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[i].employer);
 		var formattedWorkTitle = HTMLworkTitle.replace("%data%",work.jobs[i].title);
-		var formattedWorkDate = HTMLworkDates.replace("%data%",work.jobs[i].dates)
-		var formattedWorkLocation = HTMLworkLocation.replace("%data%",work.jobs[i].location)
-		var formattedWorkDescription = HTMLworkDescription.replace("%data%",work.jobs[i].description)
+		var formattedWorkDate = HTMLworkDates.replace("%data%",work.jobs[i].dates);
+		var formattedWorkLocation = HTMLworkLocation.replace("%data%",work.jobs[i].location);
+		var formattedWorkDescription = HTMLworkDescription.replace("%data%",work.jobs[i].description);
 		var employerTitle = formattedEmployer + " " + formattedWorkTitle;
 
 		$(".work-entry:last").append(employerTitle);
@@ -140,7 +140,7 @@ function inName(name){
 	lastName = lastName.toUpperCase();
 
 	return firstName + " " + lastName;
-};
+}
 
 
 bio.display();
