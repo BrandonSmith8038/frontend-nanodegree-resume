@@ -19,12 +19,20 @@ var projects = {
 		{
 			"title": "Sample Project 1",
 			"dates": "2013-2014",
-			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam debitis culpa expedita est accusamus, quas dolores sit fuga, reprehenderit."
-		},
+			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam debitis culpa expedita est accusamus, quas dolores sit fuga, reprehenderit.",
+			"images": [
+				"http://lorempixel.com/250/250/",
+				"http://lorempixel.com/250/250/"
+			]
+			},
 		{
 			"title": "Sample Project 2",
 			"dates": "2015-2017",
-			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus natus aperiam dolores quidem perspiciatis aspernatur quia sed nam, neque est!"
+			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus natus aperiam dolores quidem perspiciatis aspernatur quia sed nam, neque est!",
+			"images": [
+				"http://lorempixel.com/250/250/",
+				"http://lorempixel.com/250/250/"
+			]
 		}
 	],
 };
@@ -53,16 +61,30 @@ var education = {
 		{
 		"name": "Estrella Mountain Community College",
 		"location": "Avondale, AZ",
-		"degree": "Assocaite in Computer Science",
+		"degree": "Assocaite in Computer Science X2",
 		"dates": "2011-2014",
 		"url": "#"
 	},
 		{
-		"name": "Glendale Community College",
-		"location": "Glendale, AZ",
-		"degree": " ",
-		"dates": "2005",
+		"name": "Barry Goldwater High School",
+		"location": "Phoenix, AZ",
+		"degree": "High School Diploma",
+		"dates": "August 2005 - January 2016",
 		"url": "#"	
+		}
+	],
+	"onlineCourses": [
+		{
+		"title": "Front End Nano Degree",
+		"school": "Udacity",
+		"dates": "July 2017-Present",
+		"url": "http://udacity.com"
+		},
+		{
+		"title": "Front End Devlopment Certificate",
+		"school": "Free Code Camp",
+		"dates": "April 2017-Present",
+		"url": "http://freecodecamp.com"
 		}
 	]
 };
@@ -117,15 +139,65 @@ work.display = function(){
 };	
 
 projects.display = function() {
-	$("#projects").append(HTMLprojectStart);
-	for (var i = 0;i < projects.projects.length;i++ ){
+	for (var i = 0; i < projects.projects.length; i++) {
+		$("#projects").append(HTMLprojectStart);
+
+
 		var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
 		var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
 		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
-		
+
+
 		$(".project-entry:last").append(formattedProjectTitle);
 		$(".project-entry:last").append(formattedProjectDates);
 		$(".project-entry:last").append(formattedProjectDescription);
+
+		
+		//Displays one picture for two projects
+		//var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[i]);
+		//$(".project-entry:last").append(formattedProjectImage);
+
+		
+		//Displays two pictures for one project
+		// 		for (i = 0; i < projects.projects.length; i++) {
+		// 				for (i = 0; i < projects.projects[i].images.length; i++) {
+		// 					var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[i]);
+		// 					$(".project-entry:last").append(formattedImage);
+		// 					// 		alert(formattedImage);
+		// 			
+		//			}
+
+		// 		}
+
+	}
+};
+
+education.display = function() {
+	for (var i = 0;i < education.schools.length;i++){
+	$("#education").append(HTMLschoolStart);
+		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[i].name);
+		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
+		var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[i].dates);
+		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
+
+		$(".education-entry:last").append(formattedSchoolName);
+		$(".education-entry:last").append(formattedSchoolDegree);
+		$(".education-entry:last").append(formattedSchoolDates);
+		$(".education-entry:last").append(formattedSchoolLocation);
+
+	}
+	$("#education").append(HTMLonlineClasses);
+	for (var j = 0;j < education.schools.length;j++){
+		$("#education").append(HTMLschoolStart);
+		var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[j].title);
+		var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[j].school);
+		var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[j].dates);
+		var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses[j].url);
+
+		$(".education-entry:last").append(formattedOnlineTitle);
+		$(".education-entry:last").append(formattedOnlineSchool);
+		$(".education-entry:last").append(formattedOnlineDates);
+		$(".education-entry:last").append(formattedOnlineURL);
 	}
 };
 
@@ -144,6 +216,7 @@ function inName(name){
 
 
 bio.display();
+education.display();
 bio.skills.display();
 work.display();
 projects.display();
