@@ -122,33 +122,23 @@ work.display = function() {
 };
 
 projects.display = function() {
-	for (var i = 0; i < projects.projects.length; i++) {
+	
+	 	for (var i = 0; i < projects.projects.length; i++) {
 		$("#projects").append(HTMLprojectStart);
 
 
 		var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
-		var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
-		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
+	var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
+ 		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
 
 
 		$(".project-entry:last").append(formattedProjectTitle, formattedProjectDates, formattedProjectDescription);
 
-		//Displays one picture for two projects
-		//var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[i]);
-		//$(".project-entry:last").append(formattedProjectImage);
+		for (var j = 0; j < projects.projects[i].images.length; j++){
+			var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[j]);
+			$(".project-entry:last").append(formattedProjectImage);
 
-
-		//Displays two pictures for one project
-		// 		for (i = 0; i < projects.projects.length; i++) {
-		// 				for (i = 0; i < projects.projects[i].images.length; i++) {
-		// 					var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[i]);
-		// 					$(".project-entry:last").append(formattedImage);
-		// 					// 		alert(formattedImage);
-		// 			
-		//			}
-
-		// 		}
-
+		}
 	}
 };
 
