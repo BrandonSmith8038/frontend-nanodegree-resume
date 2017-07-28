@@ -97,14 +97,12 @@ bio.display = function() {
 	$("#topContacts, #footerContacts").append(formattedMobile, formattedEmail, formattedGithub);
 	$("#topContacts").append(formattedLocation);
 	
-};
-
-bio.skills.display = function() {
 	$("#header").append(HTMLskillsStart);
 	for (var i = 0; i < bio.skills.length; i++) {
 		var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
 		$("#skills").append(formattedSkill);
 	}
+	
 };
 
 work.display = function() {
@@ -194,7 +192,6 @@ function inName(name) {
 
 bio.display();
 education.display();
-bio.skills.display();
 work.display();
 projects.display();
 
