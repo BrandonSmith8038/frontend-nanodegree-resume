@@ -2,7 +2,7 @@ var bio = {
 	"name":	"Brandon Smith",
 	"role":	"Front End Developer",
 	"welcomeMessage": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, sit.",
-	"bioPic": "images/profilePicture.jpg",
+	"biopic": "images/profilePicture.jpg",
 	"contacts": {
 		"mobile": "(602)-694-0239",
 		"email": "brandon@reddirtwebdesign.com",
