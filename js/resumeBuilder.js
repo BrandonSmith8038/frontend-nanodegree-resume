@@ -93,9 +93,11 @@ bio.display = function() {
 	var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
 	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
-	$("#header").append(formattedWelcomeMessage, formattedBioPic, formattedHeaderRole, formattedHeaderName);
 	$("#topContacts, #footerContacts").append(formattedMobile, formattedEmail, formattedGithub);
+	$("#header").prepend(formattedHeaderName,formattedHeaderRole,formattedBioPic);
 	$("#topContacts").append(formattedLocation);
+	$("#header").append(formattedWelcomeMessage);
+
 	
 	$("#header").append(HTMLskillsStart);
 	for (var i = 0; i < bio.skills.length; i++) {
@@ -145,14 +147,17 @@ projects.display = function() {
 education.display = function() {
 	for (var i = 0; i < education.schools.length; i++) {
 		$("#education").append(HTMLschoolStart);
+		
 		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[i].name);
 		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
 		var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[i].dates);
 		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
 		var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[i].majors);
+		
 
 		
-		$(".education-entry:last").append(formattedSchoolName, formattedSchoolDegree, formattedSchoolDegree, formattedSchoolDates, formattedSchoolLocation, formattedMajor);
+		$(".education-entry:last").append(formattedSchoolName + formattedSchoolDegree,formattedSchoolDates, formattedSchoolLocation, formattedMajor);
+		
 		}
 	
 	$("#education").append(HTMLonlineClasses);
@@ -163,7 +168,7 @@ education.display = function() {
 		var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[j].dates);
 		var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses[j].url);
 
-		$(".education-entry:last").append(formattedOnlineTitle, formattedOnlineSchool, formattedOnlineDates, formattedOnlineURL);
+		$(".education-entry:last").append(formattedOnlineTitle + formattedOnlineSchool, formattedOnlineDates, formattedOnlineURL);
 	}
 };
 function inName(name) {
